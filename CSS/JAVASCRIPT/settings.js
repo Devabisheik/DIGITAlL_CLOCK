@@ -37,7 +37,7 @@
         else if (Light) {
             localStorage.setItem("Mode", "linear-gradient(to right, #4facfe, #00f2fe)")
         }
-        SpeechRecognitionAlternative("your settings was applied successfully...");
+        alert("your settings was applied successfully...");
     }
    window.addEventListener("DOMContentLoaded", () => {
     const currentFontsize = localStorage.getItem("fontsize");
