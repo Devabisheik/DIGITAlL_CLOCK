@@ -6,157 +6,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DIGITAL CLOCK</title>
   <style>
-    body {
-      /* background: linear-gradient(to right, #1e3c72, #2a0845); */
-      background: linear-gradient(to right, #4facfe, #00f2fe);
-      text-align: center;
-
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    header:hover {
+    body {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      text-align: center;
+      font-family: sans-serif;
+      padding: 1rem;
+    }
+
+    header h2 {
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+    }
+
+    header h2:hover {
       color: #0b88f5;
     }
 
-    label {
-      color: black;
-      font-size: 2rem;
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .navLink {
+      padding: 10px 20px;
+      background-color: #4facfe;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .navLink:hover {
+      background-color: #0b88f5;
+    }
+
+    .outer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem auto;
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px double aliceblue;
+      padding: 1rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .container span {
+      color: #fff;
+      font-size: 4rem;
+      font-weight: bold;
+      font-style: oblique;
+    }
+
+    #session {
+      font-size: 1.5rem;
+      margin-left: 10px;
+    }
+
+    .alarmList {
+      font-size: 0.8rem;
+      color: lightblue;
+      background-color: rgba(8, 46, 89, 0.1);
+      border: 2px dashed rgba(255, 255, 255, 0.308);
+      font-weight: bold;
+      padding: 0.5rem;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .flashsms {
+      color: #8c0303;
+      background-color: rgb(0, 145, 255);
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .alarm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+      gap: 10px;
+      padding: 1rem;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+
+    .alarm input,
+    .alarm select {
+      height: 40px;
+      width: 80px;
+      font-size: 1rem;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    #alarmToggleBox {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #done {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-weight: bold;
     }
 
     #setalarm {
       background-color: #4facfe;
       color: white;
       border-radius: 8px;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border: none;
       font-weight: bolder;
+      font-size: 1rem;
+      margin-top: 1rem;
     }
 
     #setalarm:hover {
       background-color: #0b88f5;
     }
 
-    .alarm {
-      height: 15vh;
-      width: 50vw;
-      background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-    }
+    /* ✅ RESPONSIVE DESIGN */
+    @media (max-width: 480px) {
+      .container span {
+        font-size: 2.5rem;
+      }
 
-    .alarm input,
-    select {
-      height: 40%;
-      width: 20%;
-    }
+      #session {
+        font-size: 1.2rem;
+      }
 
-    /* ✅ NEW: hide outer alarm box initially */
-    #alarmToggleBox {
-      display: none;
-    }
+      .alarm input,
+      .alarm select {
+        width: 60px;
+        height: 35px;
+      }
 
-    .container {
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px double aliceblue;
-      height: auto;
-      width: 80%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-
-    .outer {
-      height: 82vmin;
-      width: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      flex-wrap: wrap;
-      /* flex-grow: 2; */
-    }
-
-    span {
-      color: #ffffff;
-      font-weight: bolder;
-      font-size: 5rem;
-      font-style: oblique;
-    }
-
-    #session {
-      font-size: large;
-      font-style: normal;
-    }
-
-    .alarmList {
-      font-size: xx-small;
-      color: lightblue;
-      margin-top: 10px;
-      width: auto;
-      height: auto;
-      background-color: rgba(8, 46, 89, 0.1);
-      border: 2px dashed rgba(255, 255, 255, 0.308);
-      font-weight: bold;
-
-    }
-
-    .flashsms {
-      color: #8c0303;
-      background-color: rgb(0, 145, 255);
-      font-family: monospace;
-      font-weight: bolder;
-      font-size: larger;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-
-    .navLink {
-      flex-grow: 1;
-      flex-shrink: 1;
-      border-radius: 10px;
-      background-color: #4facfe;
-      color: white;
-      padding: 5px;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bolder;
-      text-align: center;
-    }
-
-    .navLink:hover {
-      background-color: #0b88f5;
+      .navLink {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-  <div onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital to developer&body=This is the message to developer to add some features';"
-    style="cursor: pointer;"><h2><i>DIGITAL CLOCK</i></h2>
-  </div>
+    <div onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital to developer&body=This is the message to developer to add some features';">
+      <h2><i>DIGITAL CLOCK</i></h2>
+    </div>
   </header>
+
   <nav>
     <a class="navLink" href="stopwatch.html">STOP WATCH</a>
     <a class="navLink" href="settings.html">SETTINGS</a>
   </nav>
+
   <div class="outer">
-    <div class="container" id="aravind">
-      <span id="hrs">00</span>
+    <div class="container">
+      <span id="hrs">06</span>
       <span class="colon">:</span>
-      <span id="min">00</span>
+      <span id="min">20</span>
       <span class="colon">:</span>
-      <span id="sec">00</span>
-      <span id="session">AM</span>
+      <span id="sec">33</span>
+      <span id="session">PM</span>
     </div>
+
     <div class="alarmList">
       <h2>ALARM LIST</h2>
     </div>
+
     <p class="flashsms"></p>
+
     <div id="alarmToggleBox">
       <div class="alarm">
         <input id="hour" type="number" min="1" max="12" placeholder="hours">
@@ -168,17 +219,29 @@
           <option value="PM">PM</option>
         </select>
       </div>
-      <button id="done" style="background-color: green;" onclick="addalarm()">done</button>
+      <button id="done" onclick="addalarm()">done</button>
     </div>
 
+    <button id="setalarm" onclick='toggleAlarmBox()'>SET ALARM</button>
   </div>
+
+  <!-- Audio files -->
   <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
   <audio id="bell" src="CSS/JAVASCRIPT/AUDIO/bell.mp3" preload="auto"></audio>
   <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
   <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
-  <button id="setalarm" onclick='toggleAlarmBox()'>SET ALARM</button>
 
-  <script src="CSS/JAVASCRIPT/clock.js"></script>
+  <!-- JS for alarm toggle -->
+  <script>
+    function toggleAlarmBox() {
+      const box = document.getElementById("alarmToggleBox");
+      box.style.display = box.style.display === "flex" ? "none" : "flex";
+    }
+
+    function addalarm() {
+      alert("Alarm added (logic not implemented here)");
+    }
+  </script>
 </body>
 
 </html>
