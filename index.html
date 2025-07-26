@@ -29,7 +29,7 @@
       color: #0b88f5;
     }
 
-    nav {
+   /* nav {
       display: flex;
       justify-content:space-between;
       flex-wrap: wrap;
@@ -49,8 +49,29 @@
 
     .navLink:hover {
       background-color: #0b88f5;
-    }
+    }*/
+            nav {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
 
+        .navLink {
+            flex-grow: 1;
+            flex-shrink: 1;
+            border-radius: 10px;
+            background-color: rgba(73, 21, 205, 0.774);
+            color: white;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .navLink:hover {
+            background-color: rgba(87, 4, 4, 0.4)
+        }
     .outer {
       display: flex;
       flex-direction: column;
