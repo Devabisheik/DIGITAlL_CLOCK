@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="CSS/stopwatch.css" />
+</head>
+
+<body>
+  <nav>
+    <a class="navLink" href="index.html">CLOCK</a>
+    <a class="navLink" href="settings.html">SETTINGS</a>
+  </nav>
+  <h1><i>STOP WATCH</i></h1>
+  <div class="outer">
+    <div class="container">
+      <span id="hrs"><input class="time" id="hour" placeholder="00" max="12" min="1" type="number"><br>
+        <label for="hour">hrs</label></span>
+      <span class="colon">:</span>
+      <span id="min"><input class="time" id="minute" placeholder="00" min="1" max="59" type="number"><br>
+        <label for="minute">min</label></span>
+      <span class="colon">:</span>
+      <span id="sec"><input class="time" min="1" max="59" id="second" placeholder="00" type="number"><br>
+        <label for="second">sec</label></span>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button id="start" class="button" onclick="process()">Start</button>
+    <button id="stop" class="button" onclick="pause()">Pause</button>
+    <button id="release" class="button" onclick="resume()">Resume</button>
+    <button id="clear" class="button" onclick="reset()">Reset</button>
+  </div>
+  <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
+  <audio id="bell" src="CSS/JAVASCRIPT/AUDIO/bell.mp3" preload="auto"></audio>
+  <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
+  <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
+  <script src="CSS/JAVASCRIPT/stopwatch.js" "></script>
+</body>
+</html>

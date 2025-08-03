@@ -1,0 +1,81 @@
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+
+        .navLink {
+            flex-grow: 1;
+            flex-shrink: 1;
+            border-radius: 10px;
+            background-color: rgba(15, 69, 132, 0.774);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .navLink:hover {
+            background-color: rgba(87, 4, 4, 0.4)
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        body {
+            background-color: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .content:hover {
+            background-color: rgba(240, 248, 255, 0.258);
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 30px;
+            padding-right: 30px;
+            color: aliceblue;
+            font-size: large;
+        }
+
+        .container {
+            background-color: rgba(87, 4, 4, 0.128);
+            margin: 10px;
+            color: azure;
+        }
+
+        .confirm {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        #done {
+            background-color: green;
+        }
+
+        #cancel {
+            background-color: red;
+        }
+
+        #done:hover {
+            background-color: rgba(20, 158, 10, 0.416);
+        }
+
+        #cancel:hover {
+            background-color: rgba(209, 18, 27, 0.655);
+        }

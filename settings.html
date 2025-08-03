@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/settings.css">
+    <title>Settings</title>
+</head>
+
+<body>
+    <nav>
+        <a class="navLink" href="index.html">CLOCK</a>
+        <a class="navLink" href="stopwatch.html">STOP WATCH</a>
+    </nav>
+    <h1>SETTINGS</h1>
+    <div class="confirm">
+        <button id="cancel">CANCEL</button>
+        <button id="done" onclick="newchanges()">DONE</button>
+    </div>
+    <div class="container">
+        <p style="text-align: center;"><b>DEFAULT RINGTONES</b></p>
+        <hr>
+        <div class="content">
+            <h5>Double beep</h5><input id="sounds1" value="Beep" name="ringtone" onclick="playSound('beep')"
+                type="radio">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Musical bell</h5><input id="sounds2" name="ringtone" value="Bell" onclick="playSound('bell')"
+                type="radio">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>guitar</h5><input id="sounds3" name="ringtone" value="guiter" onclick="playSound('guitar')"
+                type="radio">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Roaster</h5><input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')"
+                type="radio">
+        </div>
+    </div>
+    <div class="container">
+        <p style="text-align: center;"><b>APPEARANCE</b></p>
+        <hr>
+        <div class="content">
+            <h5>Dark Mode</h5><input name="Mode" id="dark" value="Dark" type="radio">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Light Mode</h5><input name="Mode" id="light" value="Light" type="radio">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Font size</h5>
+            <input type="number" min="8" id="size" style="width:30px;height: 30px; border: none;" placeholder="px">
+        </div>
+    </div>
+    <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
+    <audio id="bell" src="CSS/JAVASCRIPT/AUDIO/bell.mp3" preload="auto"></audio>
+    <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
+    <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
+</body>
+<script src="CSS/JAVASCRIPT/settings.js">
+</script>
+
+
+</html>

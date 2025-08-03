@@ -1,0 +1,104 @@
+body {
+   background: linear-gradient(to right, #4facfe, #00f2fe);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+    nav {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .navLink {
+      flex-grow: 1;
+      flex-shrink:1 ;
+      border-radius: 10px;
+      background-color:rgba(15, 69, 132, 0.774);;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      font-size:1rem;
+      font-weight: bolder;
+      text-align: center;
+    }
+    .navLink:hover {
+      background-color: #0b88f5;
+    }
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+.outer {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.time {
+  height: auto;
+  width: 60px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  background-color: aliceblue;
+  border: none;
+}
+.container label {
+  font-size: small;
+  margin-top: 5px;
+  display: block;
+}
+
+.button:hover {
+  background-color: #068b9f;
+  transform: scale(1.2);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.button {
+  background-color:rgba(15, 69, 132, 0.774);;
+  border: 6px solid rgb(12, 60, 127);
+  border-radius: 30%;
+  height: 50px;
+  width: 100px;
+  font-weight: bolder;
+  font-size: larger;
+}
+.container {
+  background-color: aliceblue;
+  height: auto;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border: 6px solid black;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bolder;
+  font-size: 2rem;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-sizing: border-box;
+}
+.colon {
+  font-weight: bold;
+  font-size: smaller;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIGITAL CLOCK</title>
+</head>
+
+<nav>
+  <a class="navLink" href="stopwatch.html">STOP WATCH</a>
+  <a class="navLink" href="settings.html">SETTINGS</a>
+</nav>
+
+<body>
+  <header>
+    <div
+      onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital clock App to developer&body=This is the message to developer to add some features';">
+      <h2><i>DIGITAL CLOCK</i></h2>
+    </div>
+  </header>
+  <div class="outer">
+    <div class="container">
+      <span id="hrs">00</span>
+      <span class="colon">:</span>
+      <span id="min">00</span>
+      <span class="colon">:</span>
+      <span id="sec">00</span>
+      <span id="session">AM</span>
+    </div>
+
+    <div class="alarmList">
+      <h2>ALARM LIST</h2>
+    </div>
+
+    <p class="flashsms"></p>
+
+    <div id="alarmToggleBox">
+      <div class="alarm">
+        <input id="hour" type="number" min="1" max="12" placeholder="hours">
+        <div class="colon">:</div>
+        <input id="minute" type="number" min="0" max="59" placeholder="minutes">
+        <select id="alarm_session">
+          <option value="none">AM/PM</option>
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+      <button id="done" onclick="addalarm()">done</button>
+    </div>
+
+    <button id="setalarm" onclick='toggleAlarmBox()'>SET ALARM</button>
+  </div>
+
+  <!-- Audio files -->
+  <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
+  <audio id="bell" src="CSS/JAVASCRIPT/AUDIO/bell.mp3" preload="auto"></audio>
+  <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
+  <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
+  <script src="CSS/JAVASCRIPT/clock.js"></script>
+</body>
+
+</html>
