@@ -33,6 +33,7 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bolder;
   font-size: xx-large;
+  color: lightblue;
 }
 .outer {
   flex: 1;
