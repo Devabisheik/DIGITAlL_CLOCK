@@ -53,24 +53,29 @@
       width: 100%;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px double aliceblue;
-      padding: 1rem;
-      width: 100%;
-      max-width: 500px;
-    }
+  .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px double aliceblue;
+  padding: 10px;
 
-    .container span {
-      color: #fff;
-      font-size: 4rem;
-      font-weight: bold;
-      font-style: oblique;
-    }
+  width: 60%;
+  max-width:auto;  
+  min-width: auto;    
+  border-radius: 10px;   
+}
+
+.container span {
+  color: #fff;
+  font-size: clamp(30px, 6vw, 90px); /* grows with screen */
+  font-weight: bold;
+  font-style: oblique;
+  text-align: center;
+  flex: 1 1 100%;
+}
+
 
     #session {
       font-size: 1.5rem;

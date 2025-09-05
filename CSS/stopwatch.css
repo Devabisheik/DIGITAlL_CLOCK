@@ -69,16 +69,14 @@ h1 {
 
 .button:hover {
   background-color: #068b9f;
-  transform: scale(1.2);
-  margin-left: 10px;
-  margin-right: 10px;
+  transform: scalex(1.1);
 }
 .button {
   background-color:rgba(15, 69, 132, 0.774);;
   border: 6px solid rgb(12, 60, 127);
   border-radius: 30%;
   height: 50px;
-  width: 100px;
+  width: auto;
   font-weight: bolder;
   font-size: larger;
 }

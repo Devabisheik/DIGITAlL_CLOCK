@@ -6,20 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DIGITAL CLOCK</title>
   <link rel="stylesheet" href="CSS/clock.css">
+  <link rel="stylesheet" href="CSS/weather.css">
+
 </head>
 
-<nav>
-  <a class="navLink" href="stopwatch.html">STOP WATCH</a>
-  <a class="navLink" href="settings.html">SETTINGS</a>
-</nav>
-
 <body>
+
+  <nav>
+    <a class="navLink" href="stopwatch.html">STOP WATCH</a>
+    <a class="navLink" href="settings.html">SETTINGS</a>
+  </nav>
+
   <header>
     <div
       onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital clock App to developer&body=This is the message to developer to add some features';">
       <h2><i>DIGITAL CLOCK</i></h2>
     </div>
   </header>
+  <a href="https://devabisheik.github.io/WEATHER/" id="weather-box" target="_blank">
+  <div id="weather">
+    <div class="left-secion">
+      <div id="icon"></div>
+      <div id="condition"></div>
+    </div>
+    <div class="flex-arrange">
+      <div id="place"></div>
+      <div id="date"></div>
+      <div id="temperature"></div>
+    </div>
+  </div>
+  </a>
+  <script src="./CSS/JAVASCRIPT/weather.js"></script>
   <div class="outer">
     <div class="container">
       <span id="hrs">00</span>

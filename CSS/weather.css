@@ -1,0 +1,81 @@
+   body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: x-large;
+      h1{
+        color: #0b83b3;
+      text-shadow: 3px 3px 3px rgb(23, 99, 199);
+      }
+      background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
+      min-height: 95vh;
+      margin: 0;
+      text-align: center;
+      font-weight: bolder;
+      font-style: oblique;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: medium;
+        padding-top: 30px;
+      }
+    }
+    #weather-box{
+      text-decoration: none;
+      color: black;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #weather {
+      font-size: 25px;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 5% 12%;
+      border-radius: 20px;
+      font-weight: bolder;
+      padding: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      min-height: 150px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+#place {
+  font-size: clamp(30px, 3vw, 45px);  /* balanced */
+  font-weight: bold;
+  text-align: right;
+    padding: 5px;
+}
+
+#date {
+  font-size: clamp(20px, 2vw, 25px);  /* smaller */
+  font-style: italic;
+  text-align: right;
+  padding: 5px
+}
+
+#temperature {
+  font-size: clamp(40px, 4vw, 60px);    /* bigger, but not huge */
+  font-family: serif;
+  text-align: right;
+  padding: 5px;
+}
+
+
+    #condition {
+      font-size: clamp(25px, 2.5vw, 50px); 
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+  #icon img {
+  width: 10vw; 
+  min-width: 50px; 
+  height: auto;     
+}
+
+    .flex-arrange
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
