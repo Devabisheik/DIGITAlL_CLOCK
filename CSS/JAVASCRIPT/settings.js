@@ -83,4 +83,5 @@ window.onload = () => {
 
 function closeFlash() {
     sms.classList.remove("show");
+    sms.style.display = "none";
 }

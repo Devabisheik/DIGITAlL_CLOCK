@@ -1,31 +1,19 @@
-   body {
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-      font-size: x-large;
-      h1{
-        color: #0b83b3;
-      text-shadow: 3px 3px 3px rgb(23, 99, 199);
-      }
-      background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
-      min-height: 95vh;
-      margin: 0;
-      text-align: center;
-      font-weight: bolder;
-      font-style: oblique;
-    }
+@media (max-width: 480px) {
+  #place {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+  #temperature {
+    font-size: clamp(30px, 6vw, 40px);
+  }
+}
 
-    @media (max-width: 600px) {
-      body {
-        font-size: medium;
-        padding-top: 30px;
-      }
-    }
-    #weather-box{
+  
+  #weather-box{
       text-decoration: none;
       color: black;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     #weather {
-      font-size: 25px;
       background-color: rgba(255, 255, 255, 0.2);
       margin: 5% 12%;
       border-radius: 20px;
@@ -34,16 +22,20 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       min-height: 150px;
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
+      justify-content:space-between;
       align-items: center;
     }
 
 #place {
-  font-size: clamp(30px, 3vw, 45px);
+  font-size: clamp(20px, 4vw, 40px);
   flex-wrap: wrap; 
   font-weight: bold;
   text-align: right;
-    padding: 5px;
+  padding: 5px;
+  word-wrap: break-word; 
+  overflow-wrap: anywhere;
+  white-space: normal; 
 }
 
 #date {
