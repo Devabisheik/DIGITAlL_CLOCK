@@ -39,7 +39,7 @@ function newchanges() {
     }
     else if (Light) {
         localStorage.setItem("Mode", "linear-gradient(to right, #4facfe, #00f2fe)")
-        document.body.style.background= "linear-gradient(to right, #4facfe, #00f2fe)"
+        document.body.style.background = "linear-gradient(to right, #4facfe, #00f2fe)"
 
     }
 
@@ -71,3 +71,16 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("sounds4").checked = true;
     }
 });
+const sms = document.getElementById("flash-message");
+
+// show on load
+window.onload = () => {
+    sms.classList.add("show");
+
+    // auto close after 5s
+    setTimeout(closeFlash, 5000);
+};
+
+function closeFlash() {
+    sms.classList.remove("show");
+}

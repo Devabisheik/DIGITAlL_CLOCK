@@ -6,6 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/settings.css">
     <title>Settings</title>
+    <style>
+        h5 {
+            font-size: clamp(20px, 2vh, 40px);
+        }
+
+        input[type="radio"] {
+            width: clamp(20px, 2vh, 40px);
+            height: clamp(20px, 2vh, 40px);
+        }
+
+        #flash-message {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background-color:orange;
+            color:black;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-style:oblique;
+            font-weight: bold;
+            font-family:serif;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: all 0.6s ease;
+            height: 35px;
+        }
+        #flash-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        #flash-message button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bolder;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +59,10 @@
         <a class="navLink" href="index.html">CLOCK</a>
         <a class="navLink" href="stopwatch.html">STOP WATCH</a>
     </nav>
+    <div id="flash-message">
+        <p>After selecting a ringtone please click done button</p>
+        <button id="closesms" onclick="closeFlash()">❌</button>
+    </div>
     <h1>SETTINGS</h1>
     <div class="confirm">
         <button id="cancel">CANCEL</button>
@@ -23,38 +73,39 @@
         <hr>
         <div class="content">
             <h5>Double beep</h5><input id="sounds1" value="Beep" name="ringtone" onclick="playSound('beep')"
-                type="radio">
+                type="radio" style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
             <h5>Musical bell</h5><input id="sounds2" name="ringtone" value="Bell" onclick="playSound('bell')"
-                type="radio">
+                type="radio" style=" accent-color: green;">
         </div>
         <hr>
         <div class="content">
-            <h5>guitar</h5><input id="sounds3" name="ringtone" value="guiter" onclick="playSound('guitar')"
-                type="radio">
+            <h5>guitar</h5><input id="sounds3" name="ringtone" value="guiter" onclick="playSound('guitar')" type="radio"
+                style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
             <h5>Roaster</h5><input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')"
-                type="radio">
+                type="radio" style="accent-color: green;">
         </div>
     </div>
     <div class="container">
         <p style="text-align: center;"><b>APPEARANCE</b></p>
         <hr>
         <div class="content">
-            <h5>Dark Mode</h5><input name="Mode" id="dark" value="Dark" type="radio">
+            <h5>Dark Mode</h5><input name="Mode" id="dark" value="Dark" type="radio" style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
-            <h5>Light Mode</h5><input name="Mode" id="light" value="Light" type="radio">
+            <h5>Light Mode</h5><input name="Mode" id="light" value="Light" type="radio" style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
             <h5>Font size</h5>
-            <input type="number" min="8" id="size" style="width:30px;height: 30px; border: none;" placeholder="px">
+            <input type="number" min="8" id="size"
+                style="width:30px;height: 30px; border: none; color:green; font-weight: bolder; " placeholder="px">
         </div>
     </div>
     <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
@@ -62,8 +113,6 @@
     <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
     <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
 </body>
-<script src="CSS/JAVASCRIPT/settings.js">
-</script>
-
+<script src="CSS/JAVASCRIPT/settings.js"></script>
 
 </html>
