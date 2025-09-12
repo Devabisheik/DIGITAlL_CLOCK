@@ -8,6 +8,9 @@ function playSound(id) {
     const selected = document.getElementById(id);
     selected.play().catch(err => console.log("Play error:", err));
 }
+const sms = document.getElementById("flash-message");
+const success = document.getElementById("success-message");
+const cancel = document.getElementById("cancel-message");
 //it will store locally user selected a ringtones
 function newchanges() {
     const fontSize = document.getElementById("size").value;
@@ -42,7 +45,13 @@ function newchanges() {
         document.body.style.background = "linear-gradient(to right, #4facfe, #00f2fe)"
 
     }
+    closesms(success);
+    showsms(success);
 
+}
+function cancelchanges() {
+    closesms(cancel);
+    showsms(cancel);
 }
 //it will apply the stored data to page after refresh
 window.addEventListener("DOMContentLoaded", () => {
@@ -71,17 +80,28 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("sounds4").checked = true;
     }
 });
-const sms = document.getElementById("flash-message");
+
+function showsms(element = sms) {
+    element.style.display = "flex";  // make it visible
+    element.classList.add("show");
+    setTimeout(() => closesmslate(element), 2000);
+}
+
+function closesms(element = sms) {
+    element.classList.remove("show");
+    element.style.display = "none";
+
+}
+
+function closesmslate(element = sms) {
+    element.classList.remove("show");
+    setTimeout(() => {
+        element.style.display = "none";
+    }, 2000);
+}
 
 // show on load
 window.onload = () => {
-    sms.classList.add("show");
-
-    // auto close after 5s
-    setTimeout(closeFlash, 5000);
+    showsms(sms);
 };
 
-function closeFlash() {
-    sms.classList.remove("show");
-    sms.style.display = "none";
-}

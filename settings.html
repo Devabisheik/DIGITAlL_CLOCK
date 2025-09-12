@@ -16,12 +16,12 @@
             height: clamp(20px, 2vh, 40px);
         }
 
-        #flash-message {
-            position: fixed;
+        .flash-message {
+            position:fixed;
             top: 50px;
             left: 50%;
             transform: translateX(-50%) translateY(-20px);
-            background-color: orange;
+            background-color: lightblue;
             color: black;
             padding: 5px;
             /* padding: 10px 20px 0px 10px; */
@@ -38,15 +38,15 @@
             max-height: 55px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
             opacity: 0;
-            transition: all 0.6s ease;
+            transition: all 2s ease-in-out;
         }
 
-        #flash-message.show {
+        .flash-message.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
 
-        #flash-message button {
+        .flash-message button {
             background: none;
             border: none;
             font-size: 20px;
@@ -62,13 +62,21 @@
         <a class="navLink" href="index.html">CLOCK</a>
         <a class="navLink" href="stopwatch.html">STOP WATCH</a>
     </nav>
-    <div id="flash-message">
+    <div id="flash-message" style="background-color: rgba(255, 142, 20, 0.808);" class="flash-message">
         <p>After selecting a ringtone please click done button</p>
-        <button id="closesms" onclick="closeFlash()">❌</button>
+        <button  id="closesms"  onclick="closesms()">❌</button>
+    </div>
+      <div id="success-message" style="background-color: rgba(6, 168, 6, 0.808);" class="flash-message">
+        <p>Success!,your changes was successfully updated</p>
+        <button  id="closesms" onclick="closesms()">❌</button>
+    </div>
+      <div id="cancel-message" style="background-color: rgba(231, 14, 14, 0.808);" class="flash-message">
+        <p>oops!,Your changes was discarded</p>
+        <button  id="closesms" onclick="closesms()">❌</button>
     </div>
     <h1>SETTINGS</h1>
     <div class="confirm">
-        <button id="cancel">CANCEL</button>
+        <button id="cancel" onclick="cancelchanges()">CANCEL</button>
         <button id="done" onclick="newchanges()">DONE</button>
     </div>
     <div class="container">
@@ -89,7 +97,7 @@
                 style="accent-color: green;">
         </div>
         <hr>
-        <div class="content">
+        <div class="content" >
             <h5>Roaster</h5><input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')"
                 type="radio" style="accent-color: green;">
         </div>

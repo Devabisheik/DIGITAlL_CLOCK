@@ -14,7 +14,8 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     #weather {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
       margin: 5% 12%;
       border-radius: 20px;
       font-weight: bolder;
