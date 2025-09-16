@@ -43,7 +43,7 @@ function refresh() {
         alarm.element.remove();
       }, 9000)
       alarmTime.splice(index, 1);
-      removeAlarmFromStorage(alarm.time); 
+      removeAlarmFromStorage(alarm.time);
     }
   });
   currentHour = hours;
@@ -131,7 +131,7 @@ function addalarm() {
       alarmListBox.remove();
     }, 300);
     alarmTime = alarmTime.filter(a => a.time !== data);
-    removeAlarmFromStorage(data); 
+    removeAlarmFromStorage(data);
   })
 
   alarmTime.push(
@@ -144,7 +144,7 @@ function addalarm() {
   alarmListBox.appendChild(removeBtn);
   document.querySelector(".alarmList").appendChild(alarmListBox)
 
-  saveAlarmToStorage(data); 
+  saveAlarmToStorage(data);
 
   if (alarmBoxes.style.display === "block") {
     alarmBoxes.style.display = "none";
@@ -215,7 +215,7 @@ function loadAlarmFromStorage(data) {
       alarmListBox.remove();
     }, 300);
     alarmTime = alarmTime.filter(a => a.time !== data);
-    removeAlarmFromStorage(data); 
+    removeAlarmFromStorage(data);
   })
 
   alarmTime.push(
@@ -239,7 +239,65 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-const header=document.querySelector("header");
-header.addEventListener("click",()=>{})
+const header = document.querySelector("header");
+header.addEventListener("click", () => { })
 // Start the clock
 setInterval(refresh, 1000);
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(reg => console.log("✅ Service Worker registered:", reg.scope))
+      .catch(err => console.log("❌ Service Worker failed:", err));
+  });
+}
+
+// Request Notification Permission
+function requestPermission() {
+  if ("Notification" in window) {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        console.log("✅ Notifications allowed");
+      } else {
+        console.log("❌ Notifications blocked");
+      }
+    });
+  }
+}
+function scheduleAlarmNotification(alarmTimeInSeconds) {
+  if ("serviceWorker" in navigator && "Notification" in window) {
+    setTimeout(() => {
+      navigator.serviceWorker.getRegistration().then((reg) => {
+        if (reg && reg.showNotification) {
+          reg.showNotification("⏰ Alarm!", {
+            body: "Your alarm is ringing!",
+            icon: "icons/icon-192.png",
+            vibrate: [200, 100, 200, 100, 200],
+            actions: [
+              { action: "open", title: "Open Clock" }
+            ]
+          });
+        }
+      });
+    }, alarmTimeInSeconds * 1000);
+  }
+}
+// Set Alarm → triggers notification
+function setAlarm(seconds) {
+  if ("serviceWorker" in navigator && "Notification" in window) {
+    setTimeout(() => {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        if (reg && reg.showNotification) {
+          reg.showNotification("⏰ Alarm!", {
+            body: "Your alarm is ringing!",
+            icon: "icons/icon-192.png",
+            vibrate: [200, 100, 200],
+            actions: [
+              { action: "open", title: "Open Clock" }
+            ]
+          });
+        }
+      });
+    }, seconds * 1000);
+  }
+}
