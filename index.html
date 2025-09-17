@@ -85,6 +85,12 @@
       .register("./service-worker.js")
       .then(reg => console.log("Service Worker registered", reg))
       .catch(err => console.log("Service Worker failed:", err));
+navigator.serviceWorker.ready.then(reg => {
+  reg.showNotification("Digital Clock", {
+    body: "This is a test notification",
+    icon: "icon.jpg"
+  });
+});
   }
 </script>
 </body>
