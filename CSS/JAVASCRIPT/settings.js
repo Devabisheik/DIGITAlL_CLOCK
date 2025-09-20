@@ -17,6 +17,10 @@ function newchanges() {
     if (fontSize) {
         localStorage.setItem("fontsize", fontSize + "px");
     }
+    const smoozeLimit = parseInt(document.getElementById("limit").value)||10;
+    if (smoozeLimit) {
+        localStorage.setItem("limit", smoozeLimit);
+    }
     document.body.style.fontSize = fontSize + "px";
     const Dark = document.getElementById("dark").checked;
     const Light = document.getElementById("light").checked;

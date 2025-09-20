@@ -22,7 +22,7 @@
 
   <header>
     <div
-      onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital clock App to developer&body=This is the message to developer to add some features';">
+      onclick="window.location.href='mailto:abisheikmister@gmail.com?subject=Feedback about the digital clock App to developer(ABISHEIK.R)&body=This is the message to developer to add some features';">
       <h2><i>DIGITAL CLOCK</i></h2>
     </div>
   </header>
@@ -49,9 +49,17 @@
       <span id="sec">00</span>
       <span id="session">AM</span>
     </div>
-
-    <div class="alarmList">
-      <h2>ALARM LIST</h2>
+    <div id="wrapperbox">
+      <h2>ALAM LIST</h2>
+      <div class="alarmList">
+      </div>
+    </div>
+    <div id="alarmOverlay">
+      <div id="time"></div>
+      <div style="margin-top:20px;">
+        <button onclick="stopAlarm()">OFF</button>
+        <button onclick="smoozeAlarm(document.getElementById('time').textContent.split(' ')[1])">SNOOZE</button>
+      </div>
     </div>
 
     <p class="flashsms"></p>
@@ -69,7 +77,6 @@
       </div>
       <button id="done" onclick="addalarm()">done</button>
     </div>
-    <button onclick="requestPermission()">Enable Notifications</button>
     <button id="setalarm" onclick='toggleAlarmBox()'>SET ALARM</button>
   </div>
 
@@ -79,20 +86,6 @@
   <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
   <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
   <script src="CSS/JAVASCRIPT/clock.js"></script>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("./service-worker.js")
-      .then(reg => console.log("Service Worker registered", reg))
-      .catch(err => console.log("Service Worker failed:", err));
-navigator.serviceWorker.ready.then(reg => {
-  reg.showNotification("Digital Clock", {
-    body: "This is a test notification",
-    icon: "icon.jpg"
-  });
-});
-  }
-</script>
 </body>
 
 </html>
