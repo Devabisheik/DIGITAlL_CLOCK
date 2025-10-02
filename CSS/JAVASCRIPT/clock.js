@@ -2,7 +2,8 @@ let alarmTime = [];
 let currentHour = 0;
 let currentMinute = 0;
 let currentSession = '';
-let currentRingtoneInterval = null; // store current alarm interval
+// let currentRingtoneInterval = null; // store current alarm interval
+let currentDeviceAudio = null; // NEW FEATURE: store device ringtone audio
 
 // ====== Clock & Alarm Refresh ======
 function refresh() {
@@ -33,10 +34,9 @@ function refresh() {
             overlay.style.display = "flex";
             overlay.style.justifyContent = "center";
             overlay.style.alignItems = "center";
-            ringAlarm.textContent = `YOUR ${currentTime} ALARM IS RINGING...`;
+            ringAlarm.textContent = `YOUR ${currentTime} ALARM IS PLAYING...`;
 
             playSelectedRingtone();
-            currentRingtoneInterval = setInterval(playSelectedRingtone, 8000);
 
             alarm.element.style.opacity = "0";
             setTimeout(() => { alarm.element.remove(); }, 500);
@@ -54,24 +54,57 @@ function refresh() {
 // ====== Play Ringtone ======
 function playSelectedRingtone() {
     const selectedTone = localStorage.getItem("ringtones") || "beep";
-    const sound = document.getElementById(selectedTone);
-    if (sound) {
-        sound.currentTime = 0;
-        sound.play().catch(e => console.log("Playback blocked:", e));
+
+    // Stop previous device audio if any
+    if (currentDeviceAudio) {
+        currentDeviceAudio.pause();
+        currentDeviceAudio = null;
+    }
+
+    if (selectedTone === "device") {
+        const dataURL = localStorage.getItem("deviceRingtone");
+        if (dataURL) {
+            currentDeviceAudio = new Audio(dataURL);
+            currentDeviceAudio.loop=true;
+            currentDeviceAudio.play().catch(err => console.log("Device play error:", err));
+            currentDeviceAudio.addEventListener("loadedmetadata", () => {
+                console.log("Device ringtone duration (seconds):", currentDeviceAudio.duration);
+            });
+        } else {
+            console.log("No device ringtone selected!");
+        }
+    } else {
+        const sound = document.getElementById(selectedTone);
+        sound.addEventListener("loadedmetadata", () => {
+            console.log("Duration in seconds:");
+        });
+        if (sound) {
+            sound.currentTime = 0;
+            sound.loop=true;
+            console.log("Default ringtone duration (seconds):", sound.duration);
+            sound.play().catch(e => console.log("Playback blocked:", e));
+        }
     }
 }
+
 
 // ====== OFF Button ======
 function stopAlarm() {
     const overlay = document.getElementById("alarmOverlay");
     overlay.style.display = "none";
-    if (currentRingtoneInterval) {
-        clearInterval(currentRingtoneInterval);
-        currentRingtoneInterval = null;
-    }
+
+
+
+    // Stop default ringtones
     const selectedTone = localStorage.getItem("ringtones") || "beep";
     const sound = document.getElementById(selectedTone);
     if (sound) sound.pause();
+
+    // NEW FEATURE: Stop device audio
+    if (currentDeviceAudio) {
+        currentDeviceAudio.pause();
+        currentDeviceAudio = null;
+    }
 }
 
 // ====== SNOOZE Button ======
@@ -80,7 +113,7 @@ function smoozeAlarm(currentAlarmTime) {
     let minutes = parseInt(currentAlarmTime.slice(3, 5));
     let session = currentAlarmTime.slice(5);
 
-    minutes +=  parseInt(localStorage.getItem("limit")) || 10;
+    minutes += parseInt(localStorage.getItem("limit")) || 10;
 
     if (minutes >= 60) {
         minutes -= 60;
@@ -112,8 +145,8 @@ function addalarmFromCode(data) {
     alarmsList.style.fontWeight = "bold";
 
     // ====== ADD FLASH SMS ATTRIBUTES ======
-    const givenHour = parseInt(data.slice(0,2));
-    const givenMinutes = parseInt(data.slice(3,5));
+    const givenHour = parseInt(data.slice(0, 2));
+    const givenMinutes = parseInt(data.slice(3, 5));
     const givenSession = data.slice(5);
 
     alarmsList.dataset.hour = givenHour;
@@ -187,21 +220,21 @@ function loadAlarmFromStorage(data) {
 
 // ====== Flash SMS Calculation ======
 function flashSMS(givenHour, givenMinutes, givenSession) {
-  let sms = "";
-  if (givenSession == currentSession) {
-    if (currentHour <= givenHour) {
-      sms = `alarm in ${givenHour - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+    let sms = "";
+    if (givenSession == currentSession) {
+        if (currentHour <= givenHour) {
+            sms = `alarm in ${givenHour - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+        } else {
+            sms = `alarm in ${(parseInt(givenHour) + 24) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+        }
     } else {
-      sms = `alarm in ${(parseInt(givenHour) + 24) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+        if (currentHour <= givenHour) {
+            sms = `alarm in ${(parseInt(givenHour) + 12) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+        } else {
+            sms = `alarm in ${(parseInt(givenHour) + 12) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
+        }
     }
-  } else {
-    if (currentHour <= givenHour) {
-      sms = `alarm in ${(parseInt(givenHour) + 12) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
-    } else {
-      sms = `alarm in ${(parseInt(givenHour) + 12) - currentHour} hours-${currentMinute < givenMinutes ? givenMinutes - currentMinute : currentMinute - givenMinutes} minutes`;
-    }
-  }
-  return sms;
+    return sms;
 }
 
 

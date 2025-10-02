@@ -17,14 +17,13 @@
         }
 
         .flash-message {
-            position:fixed;
+            position: fixed;
             top: 50px;
             left: 50%;
             transform: translateX(-50%) translateY(-20px);
             background-color: lightblue;
             color: black;
             padding: 5px;
-            /* padding: 10px 20px 0px 10px; */
             border-radius: 6px;
             font-style: oblique;
             font-size: larger;
@@ -62,55 +61,75 @@
         <a class="navLink" href="index.html">CLOCK</a>
         <a class="navLink" href="stopwatch.html">STOP WATCH</a>
     </nav>
+
     <div id="flash-message" style="background-color: rgba(255, 142, 20, 0.808);" class="flash-message">
         <p>After selecting a ringtone please click done button</p>
-        <button  id="closesms"  onclick="closesms()">❌</button>
+        <button id="closesms" onclick="closesms()">❌</button>
     </div>
-      <div id="success-message" style="background-color: rgba(6, 168, 6, 0.808);" class="flash-message">
+
+    <div id="success-message" style="background-color: rgba(6, 168, 6, 0.808);" class="flash-message">
         <p>Success!,your changes was successfully updated</p>
-        <button  id="closesms" onclick="closesms()">❌</button>
+        <button id="closesms" onclick="closesms()">❌</button>
     </div>
-      <div id="cancel-message" style="background-color: rgba(231, 14, 14, 0.808);" class="flash-message">
+
+    <div id="cancel-message" style="background-color: rgba(231, 14, 14, 0.808);" class="flash-message">
         <p>oops!,Your changes was discarded</p>
-        <button  id="closesms" onclick="closesms()">❌</button>
+        <button id="closesms" onclick="closesms()">❌</button>
     </div>
+
     <h1>SETTINGS</h1>
     <div class="confirm">
         <button id="cancel" onclick="cancelchanges()">CANCEL</button>
         <button id="done" onclick="newchanges()">DONE</button>
     </div>
+
     <div class="container">
         <p style="text-align: center;"><b>DEFAULT RINGTONES</b></p>
         <hr>
         <div class="content">
-            <h5>Double beep</h5><input id="sounds1" value="Beep" name="ringtone" onclick="playSound('beep')"
-                type="radio" style="accent-color: green;">
-        </div>
-        <hr>
-        <div class="content">
-            <h5>Musical bell</h5><input id="sounds2" name="ringtone" value="Bell" onclick="playSound('bell')"
-                type="radio" style=" accent-color: green;">
-        </div>
-        <hr>
-        <div class="content">
-            <h5>guitar</h5><input id="sounds3" name="ringtone" value="guiter" onclick="playSound('guitar')" type="radio"
+            <h5>Double beep</h5>
+            <input id="sounds1" value="Beep" name="ringtone" onclick="playSound('beep')" type="radio"
                 style="accent-color: green;">
         </div>
         <hr>
-        <div class="content" >
-            <h5>Roaster</h5><input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')"
-                type="radio" style="accent-color: green;">
+        <div class="content">
+            <h5>Musical bell</h5>
+            <input id="sounds2" name="ringtone" value="Bell" onclick="playSound('bell')" type="radio"
+                style=" accent-color: green;">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Guitar</h5>
+            <input id="sounds3" name="ringtone" value="guitar" onclick="playSound('guitar')" type="radio"
+                style="accent-color: green;">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Roaster</h5>
+            <input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')" type="radio"
+                style="accent-color: green;">
+        </div>
+        <hr>
+        <div class="content">
+            <h5>Add Ringtone From Device</h5>
+            <input id="device" name="ringtoneFile" type="file" accept="audio/*">
+            <!-- Updated radio button for device -->
+            <input type="radio" name="ringtone" value="device" onclick="playSound('device')"
+                style="accent-color: green;">
         </div>
     </div>
+
     <div class="container">
         <p style="text-align: center;"><b>APPEARANCE</b></p>
         <hr>
         <div class="content">
-            <h5>Dark Mode</h5><input name="Mode" id="dark" value="Dark" type="radio" style="accent-color: green;">
+            <h5>Dark Mode</h5>
+            <input name="Mode" id="dark" value="Dark" type="radio" style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
-            <h5>Light Mode</h5><input name="Mode" id="light" value="Light" type="radio" style="accent-color: green;">
+            <h5>Light Mode</h5>
+            <input name="Mode" id="light" value="Light" type="radio" style="accent-color: green;">
         </div>
         <hr>
         <div class="content">
@@ -119,16 +138,19 @@
                 style="width:30px;height: 30px; border: none; color:green; font-weight: bolder; " placeholder="px">
         </div>
         <div class="content">
-            <h5>Smooze Time</h5>
+            <h5>Snooze Time</h5>
             <input type="number" min="1" max="15" id="limit"
                 style="width:30px;height: 30px; border: none; color:green; font-weight: bolder; " placeholder="min">
         </div>
     </div>
+
+    <!-- Default audio files -->
     <audio id="beep" src="CSS/JAVASCRIPT/AUDIO/clock.mp3" preload="auto"></audio>
     <audio id="bell" src="CSS/JAVASCRIPT/AUDIO/bell.mp3" preload="auto"></audio>
     <audio id="guitar" src="CSS/JAVASCRIPT/AUDIO/guitar.mp3" preload="auto"></audio>
     <audio id="roaster" src="CSS/JAVASCRIPT/AUDIO/roaster.mp3" preload="auto"></audio>
+
+    <script src="CSS/JAVASCRIPT/settings.js"></script>
 </body>
-<script src="CSS/JAVASCRIPT/settings.js"></script>
 
 </html>

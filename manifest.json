@@ -1,10 +1,10 @@
 {
-  "name": "DIGITAL CLOCK BY ABISHEIK.R",
-  "short_name": "CLOCK(ABI)",
+  "name": "SKYTIME BY ABISHEIK.R",
+  "short_name": "SKYTIME",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#001133",
+  "theme_color": "navy blue",
   "icons": [
     {
       "src": "icon.png",

@@ -5,29 +5,59 @@ function playSound(id) {
         audio.pause();
         audio.currentTime = 0;
     });
-    const selected = document.getElementById(id);
-    selected.play().catch(err => console.log("Play error:", err));
+
+    if (id === "device") { // NEW FEATURE
+        const dataURL = localStorage.getItem("deviceRingtone");
+        if (dataURL) {
+            const audioFile = new Audio(dataURL);
+            audioFile.play().catch(err => console.log("Play error:", err));
+        } else {
+            alert("Please select a ringtone from your device!");
+        }
+    } else {
+        const selected = document.getElementById(id);
+        selected.play().catch(err => console.log("Play error:", err));
+    }
 }
+
 const sms = document.getElementById("flash-message");
 const success = document.getElementById("success-message");
 const cancel = document.getElementById("cancel-message");
+
+// NEW FEATURE: Listen for device ringtone selection immediately
+const deviceInput = document.getElementById("device");
+deviceInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            localStorage.setItem("deviceRingtone", e.target.result);
+            console.log("Device ringtone saved:", file.name);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
 //it will store locally user selected a ringtones
 function newchanges() {
     const fontSize = document.getElementById("size").value;
     if (fontSize) {
         localStorage.setItem("fontsize", fontSize + "px");
     }
-    const smoozeLimit = parseInt(document.getElementById("limit").value)||10;
+    const smoozeLimit = parseInt(document.getElementById("limit").value) || 10;
     if (smoozeLimit) {
         localStorage.setItem("limit", smoozeLimit);
     }
     document.body.style.fontSize = fontSize + "px";
+
     const Dark = document.getElementById("dark").checked;
     const Light = document.getElementById("light").checked;
     const sound1 = document.getElementById("sounds1").checked;
     const sound2 = document.getElementById("sounds2").checked;
     const sound3 = document.getElementById("sounds3").checked;
     const sound4 = document.getElementById("sounds4").checked;
+    const deviceRadio = document.querySelector('input[name="ringtone"][value="device"]'); // NEW FEATURE
+
     if (sound1) {
         localStorage.setItem("ringtones", "beep")
     }
@@ -40,6 +70,16 @@ function newchanges() {
     else if (sound4) {
         localStorage.setItem("ringtones", "roaster")
     }
+    else if (deviceRadio && deviceRadio.checked) { // NEW FEATURE
+        const storedDevice = localStorage.getItem("deviceRingtone");
+        if (storedDevice) {
+            localStorage.setItem("ringtones", "device");
+        } else {
+            alert("Please select a ringtone file from your device before clicking Done!");
+            return; // prevent saving incomplete settings
+        }
+    }
+
     if (Dark) {
         localStorage.setItem("Mode", "linear-gradient(to right, #1e3c72, #2a0845)")
         document.body.style.background = "linear-gradient(to right, #1e3c72, #2a0845)"
@@ -47,12 +87,12 @@ function newchanges() {
     else if (Light) {
         localStorage.setItem("Mode", "linear-gradient(to right, #4facfe, #00f2fe)")
         document.body.style.background = "linear-gradient(to right, #4facfe, #00f2fe)"
-
     }
     closesms(success);
     showsms(success);
-
 }
+
+
 function cancelchanges() {
     closesms(cancel);
     showsms(cancel);
@@ -82,6 +122,9 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("sounds3").checked = true;
     } else if (tones === "roaster") {
         document.getElementById("sounds4").checked = true;
+    } else if (tones === "device") { // NEW FEATURE
+        const deviceRadio = document.querySelector('input[name="ringtone"][value="device"]');
+        if (deviceRadio) deviceRadio.checked = true;
     }
 });
 
@@ -108,4 +151,3 @@ function closesmslate(element = sms) {
 window.onload = () => {
     showsms(sms);
 };
-
