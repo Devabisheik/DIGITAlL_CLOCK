@@ -10,7 +10,7 @@
   
   #weather-box{
       text-decoration: none;
-      color: black;
+      color:black;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     #weather {

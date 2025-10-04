@@ -1,4 +1,6 @@
 //play the sound from the beginning user clicked the button
+let audioFile = null;
+const deviceStatus = document.getElementById("deviceStatus");
 function playSound(id) {
     const audios = document.querySelectorAll("audio");
     audios.forEach(audio => {
@@ -9,13 +11,19 @@ function playSound(id) {
     if (id === "device") { // NEW FEATURE
         const dataURL = localStorage.getItem("deviceRingtone");
         if (dataURL) {
-            const audioFile = new Audio(dataURL);
+            if (!audioFile) {
+                audioFile = new Audio(dataURL);
+            }
+            audioFile.pause();
+            audioFile.currentTime = 0;
             audioFile.play().catch(err => console.log("Play error:", err));
         } else {
             alert("Please select a ringtone from your device!");
         }
     } else {
         const selected = document.getElementById(id);
+        selected.pause();
+        selected.currentTime = 0;
         selected.play().catch(err => console.log("Play error:", err));
     }
 }
@@ -32,7 +40,9 @@ deviceInput.addEventListener('change', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
             localStorage.setItem("deviceRingtone", e.target.result);
-            console.log("Device ringtone saved:", file.name);
+            localStorage.setItem("deviceRingtoneName", file.name); 
+            document.getElementById("deviceStatus").textContent =
+                "Choosen Ringtones: " + file.name;
         };
         reader.readAsDataURL(file);
     }
@@ -112,6 +122,13 @@ window.addEventListener("DOMContentLoaded", () => {
     if (currentFontsize) {
         document.getElementById("size").value = parseInt(currentFontsize);
         document.body.style.fontSize = currentFontsize;
+    }
+    const savedRingtone = localStorage.getItem("deviceRingtoneName");
+    if (savedRingtone) {
+        document.getElementById("deviceStatus").textContent =
+            "CHOOSEN RINGTONE: " + "\""+savedRingtone+"\"";
+    } else {
+        document.getElementById("deviceStatus").textContent = "No device ringtone chosen.";
     }
     const tones = localStorage.getItem("ringtones");
     if (tones === "beep") {

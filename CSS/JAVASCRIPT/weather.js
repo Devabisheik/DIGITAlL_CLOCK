@@ -140,3 +140,9 @@ function displayWeather(data) {
   document.getElementById("date").innerHTML = new Date().toLocaleDateString();
 
 }
+let bgcolor=localStorage.getItem("Mode");
+console.log(bgcolor);
+if(bgcolor.includes("2a0845"))
+{
+  weatherDiv.style.color="snow";
+}

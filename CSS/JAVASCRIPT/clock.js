@@ -191,6 +191,16 @@ function addalarm() {
     const givenHour = document.getElementById("hour").value.padStart(2, '0');
     const givenMinutes = document.getElementById("minute").value.padStart(2, '0');
     const givenSession = document.getElementById("alarm_session").value;
+    if(givenHour>12 || givenHour<=0 || givenMinutes>59 || givenMinutes <=0)
+    {
+        alert("⚠️ please,fill alarms within range");
+        return;
+    }
+    if(!givenHour||!givenMinutes||givenSession=="none")
+    {
+        alert("⚠️ please,fill the alarm fields!");
+        return;
+    }
     const data = `${givenHour}:${givenMinutes}${givenSession}`;
     addalarmFromCode(data);
 

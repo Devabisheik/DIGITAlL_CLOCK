@@ -109,16 +109,21 @@
             <input id="sounds4" name="ringtone" value="Roaster" onclick="playSound('roaster')" type="radio"
                 style="accent-color: green;">
         </div>
+    </div>
+    <div class="container">
+        <p style="text-align: center;"><b>ADD RINGTONES FROM DEVICE</b></p>
         <hr>
-        <div class="content">
-            <h5>Add Ringtone From Device</h5>
-            <input id="device" name="ringtoneFile" type="file" accept="audio/*">
+        <div class="content" style="padding: 20px;">
+            <input id="device" name="ringtoneFile" type="file" accept="audio/*"
+                style="color:rgba(87, 4, 4, 0.128);">
+            <p id="deviceStatus" style="font-weight: bold; color: aliceblue; font-style: italic;">
+                No device ringtone chosen.
+            </p>
             <!-- Updated radio button for device -->
             <input type="radio" name="ringtone" value="device" onclick="playSound('device')"
                 style="accent-color: green;">
         </div>
     </div>
-
     <div class="container">
         <p style="text-align: center;"><b>APPEARANCE</b></p>
         <hr>
@@ -137,6 +142,7 @@
             <input type="number" min="8" id="size"
                 style="width:30px;height: 30px; border: none; color:green; font-weight: bolder; " placeholder="px">
         </div>
+        <hr>
         <div class="content">
             <h5>Snooze Time</h5>
             <input type="number" min="1" max="15" id="limit"
